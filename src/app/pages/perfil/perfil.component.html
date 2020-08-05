@@ -1,0 +1,16 @@
+<mat-card>Perfil de Usuario</mat-card>
+
+<div class="example-container">
+
+    <label>Nombre Usuario:</label>
+    <mat-form-field>
+        <input matInput [value]="nombreUsuario" readonly>
+    </mat-form-field>
+
+    <label>Roles:</label>
+    <mat-form-field *ngFor="let r of roles">
+        <input matInput [value]= "r" readonly>
+    </mat-form-field>
+
+</div>
+<router-outlet></router-outlet>

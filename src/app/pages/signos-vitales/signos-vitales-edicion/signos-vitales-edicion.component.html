@@ -1,0 +1,42 @@
+<mat-card>Ingrese los datos de los Signos Vitales</mat-card>
+
+<div class="example-container">
+
+    <mat-form-field>
+        <input type="text" placeholder="Paciente" matInput [matAutocomplete]="autoPaciente"
+            [formControl]="myControlPaciente" formControlName="paciente">
+    </mat-form-field>
+    <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="mostrarPaciente" 
+        (optionSelected)="seleccionarPaciente($event)">
+        <mat-option *ngFor="let p of pacientesFiltrados | async" [value]="p">
+            {{ p.nombres }} {{p.apellidos}}
+        </mat-option>
+    </mat-autocomplete>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha"
+            [(ngModel)]="fechaSeleccionada">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Temperatura" [(ngModel)]="signosVitales.temperatura">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Pulso" [(ngModel)]="signosVitales.pulso">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Ritmo Respiratorio" [(ngModel)]="signosVitales.ritmoRespiratorio">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="operar()" [disabled]="estadoBotonRegistrar()">Aceptar</button>
+
+    <button mat-raised-button color="accent" routerLink='/signos-vitales' type="button">
+        <mat-icon>close</mat-icon>
+        <span>Cancelar</span>
+    </button>
+
+</div>
